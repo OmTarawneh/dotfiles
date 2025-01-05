@@ -11,6 +11,7 @@ return {
         init_options = {
           lint = true,
         },
+        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
         on_attach = function(client, bufnr)
           client.server_capabilities.documentFormattingProvider = true
 
