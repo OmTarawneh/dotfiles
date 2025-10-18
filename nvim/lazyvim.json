@@ -4,11 +4,12 @@
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.linting.eslint",
-    "lazyvim.plugins.extras.util.octo"
+    "lazyvim.plugins.extras.util.octo",
+    "lazyvim.plugins.extras.vscode"
   ],
   "install_version": 7,
   "news": {
-    "NEWS.md": "10960"
+    "NEWS.md": "11866"
   },
   "version": 8
 }

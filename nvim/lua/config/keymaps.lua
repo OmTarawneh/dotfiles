@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- avoid overwriting the default register when you paste
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -68,7 +67,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- Delete the selected text or current line without affecting the system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 
-vim.keymap.set("i", "<C-c>", "<Esc>")
+-- vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Disable the "Q" key in Normal Mode
 -- The `Q` key is normally used for entering Ex mode, which is an old Vim feature.
@@ -85,3 +84,24 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader><leader>", "<cmd>source % | echo 'File sourced!'<CR>")
+
+-- Console.log keymaps
+-- Insert console.log(what_I_copied) at cursor position
+vim.keymap.set("n", "<leader>cpe", function()
+  local content = vim.fn.getreg('"')
+  if content ~= "" then
+    vim.api.nvim_put({ "console.log(" .. content .. ")" }, "", false, true)
+  else
+    vim.notify("No content in clipboard", vim.log.levels.WARN)
+  end
+end, { desc = "Insert console.log(what_I_copied)" })
+
+-- Insert console.log({what_I_copied}) at cursor position
+vim.keymap.set("n", "<leader>cpo", function()
+  local content = vim.fn.getreg('"')
+  if content ~= "" then
+    vim.api.nvim_put({ "console.log({" .. content .. "})" }, "", false, true)
+  else
+    vim.notify("No content in clipboard", vim.log.levels.WARN)
+  end
+end, { desc = "Insert console.log({what_I_copied})" })
